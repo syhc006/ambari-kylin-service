@@ -11,6 +11,7 @@ class KylinQuery(Script):
     def install(self, env):
         import params
         self.install_packages(env)
+        env.set_params(params)
         # Create user and group for kylin if they don't exist
         try:
             grp.getgrnam(params.kylin_group)
