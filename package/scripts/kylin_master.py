@@ -1,6 +1,8 @@
 import os
 import base64
 from time import sleep
+import pwd
+import grp
 from resource_management import *
 
 
@@ -62,7 +64,7 @@ class KylinMaster(Script):
              content=Template("env.rc.j2"),
              mode=0o700
              )
-        Execute(format("bash {tmp_dir}/kylin_init.sh", user=params.kylin_user))
+        Execute(format("bash {tmp_dir}/kylin_init.sh"), user=params.kylin_user)
 
     def start(self, env):
         import params
