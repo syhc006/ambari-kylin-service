@@ -2,6 +2,19 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration supports_adding_forbidden="true">
+  <property>
+    <name>kylin_user</name>
+    <value>kylin</value>
+    <property-type>USER</property-type>
+    <description>Kylin user</description>
+  </property>
+
+  <property>
+    <name>kylin_group</name>
+    <value>kylin</value>
+    <property-type>GROUP</property-type>
+    <description>Kylin group</description>
+  </property>
    
   <property>
     <name>kylin_properties</name>
@@ -251,7 +264,7 @@ kylin.engine.spark.max-partition=5000
   </property>
 <property>
     <name>download.location</name>
-    <value>http://10.0.83.123/HDP/2.x/updates/2.6.1.0/kylin/apache-kylin-2.1.0-bin-hbase1x.tar.gz</value>
+    <value>https://archive.apache.org/dist/kylin/apache-kylin-2.5.1/apache-kylin-2.5.1-bin-hbase1x.tar.gz</value>
     <description>Location to download gstore</description>
  </property> 
 
