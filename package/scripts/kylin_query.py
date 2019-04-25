@@ -61,13 +61,20 @@ class KylinQuery(Script):
              mode=0o700
              )
         Execute(format("bash {tmp_dir}/kylin_init.sh"), user=params.kylin_user)
+        Directory("/var/run/kylin",
+                  mode=0755,
+                  cd_access='a',
+                  create_parents=True
+                  )
+        cmd = format("chown -R {kylin_user}:{kylin_group} /var/run/kylin")
+        Execute(cmd)
 
     def start(self, env):
         import params
         env.set_params(params)
         self.configure(env)
         Execute(format(
-            ". {tmp_dir}/kylin_env.rc;{install_dir}/latest/bin/kylin.sh start;cp -rf {install_dir}/latest/pid /var/run/kylin.pid"), user=params.kylin_user)
+            ". {tmp_dir}/kylin_env.rc;{install_dir}/latest/bin/kylin.sh start;cp -rf {install_dir}/latest/pid /var/run/kylin/kylin.pid"), user=params.kylin_user)
 
     def stop(self, env):
         import params
@@ -81,7 +88,7 @@ class KylinQuery(Script):
         self.start(env)
 
     def status(self, env):
-        check_process_status("/var/run/kylin.pid")
+        check_process_status("/var/run/kylin/kylin.pid")
 
 
 if __name__ == "__main__":
